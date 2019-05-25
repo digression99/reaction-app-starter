@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { newMessage } from '../state/actions';
+import { useAppContext } from '../hooks';
 
-const PublishMessage = ({ dispatch }) => {
+const PublishMessage = ({  }) => {
   const [ text, setText ] = useState('');
+  const { state : { username }, pubsub } = useAppContext();
 
   const updateText = (event) => {
     setText(event.target.value);
   };
 
   const publishMessage = () => {
-    console.log(text);
-    dispatch(newMessage(text));
-
+    pubsub.publish(newMessage({ text, username }));
+    // dispatch(newMessage(text));
     setText('');
   };
 
