@@ -5,5 +5,16 @@ export const newMessage = ({ text, username }) => ({ type : NEW_MESSAGE, payload
 
 export const setUsername = username => ({ type : SET_USERNAME, payload : username });
 
+export const createReaction = ({ type, emoji, username, messageId }) => ({
+  type,
+  payload : {
+    id : uuidv4(),
+    timestamp : Date.now(),
+    emoji,
+    username,
+    messageId
+  }
+});
+
 
 
